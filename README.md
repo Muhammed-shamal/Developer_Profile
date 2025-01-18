@@ -98,12 +98,13 @@ To extend the action menu with additional actions:
 1. Add new `MenuItem` options (e.g., "View Details").
 2. Extend the `handleAction` function to handle new actions (e.g., log action data or trigger additional logic).
 
-11. [Sorting]
+3. [Action Menus]
 
-- [Action Menu](#action-menu)
-  A response that is responsive (#responsiveness)
+checkbox;
+for work update or delete function , means actually delete or update instead of only print in console;
 
-6. [Application Extension](#extending-the-app)
-7. [Error Handling & Edge Cases](#error-handling--edge-cases)
+Update Button;
+once update a row of data then log the data in console, also if need to update the data actually need to check true the check box;
 
-## Reliances
+Delete Button;
+once delete a row of data then log the data in console, also if need to delete the data actually need to check true the check box;
