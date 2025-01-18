@@ -5,16 +5,21 @@ import TableUI from "./UI";
 import EditModal from "./modal";
 
 function TableFunction() {
+  //rows declarations
   const [rows, setRows] = useState<RowData[]>(data);
 
+  //for function state (ascending / descending)order
   const [sortConfig, setSortConfig] = useState<{
     key: keyof RowData;
     direction: "asc" | "desc";
   }>({ key: "id", direction: "asc" });
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  //select row for specific functions
   const [selectedRow, setSelectedRow] = useState<RowData | null>(null);
-  const [editData, setEditData] = useState<RowData | null>(null); //for edited data;
+
+  const [editData, setEditData] = useState<RowData | null>(null); //for edited data to view in modal;
 
   //make functions;
   const [isConfirmed, setIsConfirmed] = useState(false);
@@ -22,12 +27,14 @@ function TableFunction() {
   //open modal for update data;
   const [openModal, setOpenModal] = useState(false);
 
+  //loading for each requests; (when page load, update/delete/ sort time)
   const [loading, setLoading] = useState<boolean>(true);
 
+  //for make loading skeleton when page runs;
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1500);//loading false after 1500s
 
     return () => clearTimeout(timer);
   }, []);
@@ -40,12 +47,17 @@ function TableFunction() {
     }
     setSortConfig({ key: column, direction });
 
+    setLoading(true);
+
     const sortedRows = [...rows].sort((a, b) => {
       if (a[column] < b[column]) return direction === "asc" ? -1 : 1;
       if (a[column] > b[column]) return direction === "asc" ? 1 : -1;
       return 0;
     });
     setRows(sortedRows);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   };
 
   //open menu for delete / update;
@@ -99,11 +111,12 @@ function TableFunction() {
     setAnchorEl(null);
   };
 
+  //check true / false (confirmation of actions)
   const toggleConfirmation = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsConfirmed(event.target.checked);
   };
 
-  //update functions
+  //update functions in modal
   const handleUpdateSubmit = () => {
     if (editData) {
       setLoading(true);
@@ -118,6 +131,7 @@ function TableFunction() {
     setOpenModal(false);
   };
 
+  //to input values
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (editData) {
       setEditData({ ...editData, [event.target.name]: event.target.value });

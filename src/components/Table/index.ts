@@ -5,6 +5,7 @@ export interface RowData {
   age: number;
 }
 
+//some constant datas
 export const data: RowData[] = [
   { id: 1, name: "Muhammed Shamal", age: 20 },
   { id: 2, name: "Kashyap CT", age: 24 },
@@ -15,6 +16,7 @@ export const data: RowData[] = [
   { id: 6, name: "Shasin TS", age: 24 },
 ];
 
+//props for table
 export interface TableUIProps {
   rows: RowData[];
   sortConfig: {
@@ -32,7 +34,7 @@ export interface TableUIProps {
   handleDelete: (action: "delete") => void;
 }
 
-// Define the interface for props
+//props for modal
 export interface ModalUIProps {
   isModalOpen: boolean;
   editData: RowData | null; // Allow null for when no data is being edited
