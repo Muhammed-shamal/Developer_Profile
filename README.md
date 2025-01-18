@@ -1,2 +1,2 @@
-# React + TypeScript + Vite + Tailwind Css
+# React + TypeScript + Vite + Material UI
 
