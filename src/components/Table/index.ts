@@ -15,7 +15,6 @@ export const data: RowData[] = [
   { id: 6, name: "Shasin TS", age: 24 },
 ];
 
-
 export interface TableUIProps {
   rows: RowData[];
   sortConfig: {
@@ -24,9 +23,20 @@ export interface TableUIProps {
   };
   anchorEl: HTMLElement | null;
   selectedRow: RowData | null;
+
   handleSort: (column: keyof RowData) => void;
   handleMenuClick: (event: React.MouseEvent<HTMLElement>, row: RowData) => void;
   handleMenuClose: () => void;
   handleUpdate: (action: "edit") => void;
   handleDelete: (action: "delete") => void;
+}
+
+
+// Define the interface for props
+export interface ModalUIProps {
+  isModalOpen: boolean;
+  editData: RowData | null; // Allow null for when no data is being edited
+  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleUpdateSubmit: () => void;
+  setOpenModal: (open: boolean) => void;
 }
