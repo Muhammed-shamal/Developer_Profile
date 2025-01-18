@@ -1,9 +1,12 @@
 import { Button, Stack } from "@mui/material";
+import { DeleteBtnProps } from ".";
 
-function DeleteBtn() {
+function DeleteBtn({ handleDelete }: DeleteBtnProps) {
   return (
     <Stack>
-      <Button></Button>
+      <Button color="error" onClick={() => handleDelete("delete")}>
+        Delete
+      </Button>
     </Stack>
   );
 }
