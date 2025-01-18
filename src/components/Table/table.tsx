@@ -77,7 +77,7 @@ function TableFunction() {
         setOpenModal(true);
       } else {
         console.log(
-          `Action (Delete) on row ${JSON.stringify(selectedRow)} not confirmed.`
+          `Action (Update) on row ${JSON.stringify(selectedRow)} not confirmed.`
         );
       }
     }
