@@ -23,6 +23,7 @@ export interface TableUIProps {
   };
   anchorEl: HTMLElement | null;
   selectedRow: RowData | null;
+  loading: boolean;
 
   handleSort: (column: keyof RowData) => void;
   handleMenuClick: (event: React.MouseEvent<HTMLElement>, row: RowData) => void;
@@ -30,7 +31,6 @@ export interface TableUIProps {
   handleUpdate: (action: "edit") => void;
   handleDelete: (action: "delete") => void;
 }
-
 
 // Define the interface for props
 export interface ModalUIProps {

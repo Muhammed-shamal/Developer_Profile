@@ -61,10 +61,14 @@ npm run dev
 ### State Management
 
 - **`useState`** is used to manage the state of:
+
   - `rows`: The data displayed in the table.
   - `sortConfig`: The current column being sorted and the sorting direction.
   - `anchorEl`: The element for positioning the action menu.
   - `selectedRow`: The currently selected row for action purposes.
+
+- **`useEffect`** is used to manage loading:
+  (for data loading by react mui skeleton)
 
 ### Sorting
 
@@ -77,29 +81,6 @@ npm run dev
 - **`Buttons`**: Clicking on a menu item triggers an action, and the corresponding details of the row are logged to the console.
 - The selected row is tracked in the state `selectedRow` to ensure the correct data is logged for the selected action.
 
-### Responsiveness
-
-- The table layout automatically adjusts to screen sizes, thanks to Material-UI’s built-in grid system and components like `Table`, `TableHead`, `TableCell`, and `TableRow`.
-
-10. [State Administration]
-
-### Adding New Columns
-
-To add more columns, update the following:
-
-1. Add a new column to the `TableHead` (e.g., "Email", "Address").
-2. Update the **`RowData`** interface to include the new column's data.
-3. Add the column to the `handleSort` function, and adjust the `rows` state to include data for that column.
-
-### Adding More Actions
-
-To extend the action menu with additional actions:
-
-1. Add new `MenuItem` options (e.g., "View Details").
-2. Extend the `handleAction` function to handle new actions (e.g., log action data or trigger additional logic).
-
-3. [Action Menus]
-
 checkbox;
 for work update or delete function , means actually delete or update instead of only print in console;
 
@@ -108,3 +89,13 @@ once update a row of data then log the data in console, also if need to update t
 
 Delete Button;
 once delete a row of data then log the data in console, also if need to delete the data actually need to check true the check box;
+
+### Responsiveness
+
+- The table layout automatically adjusts to screen sizes, thanks to Material-UI’s built-in grid system and components like `Table`, `TableHead`, `TableCell`, and `TableRow`.
+
+Created a modal to update data, and only update data actually when submit the action button which is in modal;
+
+Loading Function (feel like api fetching)
+
+created setTimeout function to load true / false to make loading for each areas, when load page mui loading skeleton will happens using the useEffect hooks, also available loading for each actions like update or delete.

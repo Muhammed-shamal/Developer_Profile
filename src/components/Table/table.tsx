@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { data, RowData } from ".";
 import TableUI from "./UI";
@@ -21,6 +21,16 @@ function TableFunction() {
 
   //open modal for update data;
   const [openModal, setOpenModal] = useState(false);
+
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   //for make sorting;
   const handleSort = (column: keyof RowData) => {
@@ -51,7 +61,6 @@ function TableFunction() {
   const handleUpdate = () => {
     if (selectedRow) {
       if (isConfirmed) {
-        console.log(`Performing Update on row`, selectedRow);
         setEditData(selectedRow);
         setOpenModal(true);
       } else {
@@ -68,8 +77,13 @@ function TableFunction() {
   const handleDelete = () => {
     if (selectedRow) {
       if (isConfirmed) {
-        console.log(`Performing Delete on row`, selectedRow);
+        setLoading(true);
         setRows(rows.filter((row) => row.id !== selectedRow.id));
+
+        //use to get a feel likes api fetching
+        setTimeout(() => {
+          setLoading(false);
+        }, 1500);
       } else {
         console.log(
           `Action (Delete) on row ${JSON.stringify(selectedRow)} not confirmed.`
@@ -92,9 +106,14 @@ function TableFunction() {
   //update functions
   const handleUpdateSubmit = () => {
     if (editData) {
+      setLoading(true);
       setRows((prevRows) =>
         prevRows.map((row) => (row.id === editData.id ? editData : row))
       );
+
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500);
     }
     setOpenModal(false);
   };
@@ -129,6 +148,7 @@ function TableFunction() {
         rows={rows}
         selectedRow={selectedRow}
         sortConfig={sortConfig}
+        loading={loading}
         handleDelete={handleDelete}
         handleMenuClick={handleMenuClick}
         handleMenuClose={handleMenuClose}

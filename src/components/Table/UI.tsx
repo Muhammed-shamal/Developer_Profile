@@ -10,6 +10,7 @@ import {
   IconButton,
   Menu,
   Paper,
+  Skeleton,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
@@ -24,6 +25,7 @@ function TableUI({
   rows,
   selectedRow,
   sortConfig,
+  loading,
 
   //functions
   handleDelete,
@@ -80,7 +82,24 @@ function TableUI({
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.length > 0 ? (
+              {loading ? (
+                Array.from({ length: 5 }).map((_, index) => (
+                  <TableRow key={index}>
+                    <TableCell>
+                      <Skeleton variant="text" width="40px" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" width="120px" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" width="60px" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="circular" width={40} height={40} />
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : rows.length > 0 ? (
                 rows.map((row) => (
                   <TableRow key={row.id}>
                     <TableCell>{row.id}</TableCell>
