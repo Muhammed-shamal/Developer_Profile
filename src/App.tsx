@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar/navbar";
 import TableFunction from "./components/Table/table";
+import Login from "./pages/login";
 
 function App() {
   return (
@@ -7,7 +8,8 @@ function App() {
       {/* a sample header */}
       <Navbar />
       {/* click bellow to view table ui and functions */}
-      <TableFunction />
+      {/* <TableFunction /> */}
+      <Login />
     </>
   );
 }
